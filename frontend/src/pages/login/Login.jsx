@@ -1,4 +1,5 @@
 import React, { useContext, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { loginCall } from '../../actionCalls'
 import { AuthContext } from '../../state/AuthContext'
 import "./Login.css"
@@ -32,7 +33,7 @@ export default function Login() {
         </div>
         <div className="loginRight">
           <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
-            <p className="loginMsg">ログインはこちら</p>
+            <p className="loginMsg">ログイン</p>
             <input
               type="email"
               className="loginInput"
@@ -49,8 +50,10 @@ export default function Login() {
               ref={password}
             />
             <button className="loginButton" type="submit">ログイン</button>
-            <span className="loginForgot">パスワードを忘れた方</span>
-            <button className="loginRegisterButton">アカウント作成</button>
+            {/* <span className="loginForgot">パスワードを忘れた方</span> */}
+            <Link to="/register" className="loginRegisterButton">
+              <div>アカウント作成はこちら</div>
+            </Link>
           </form>
         </div>
       </div>

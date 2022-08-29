@@ -17,7 +17,7 @@ export default function Profile() {
       setUser(response.data)
     }
     fetchUser()
-  }, [])
+  }, [user.username])
   const username = useParams().username
 
 
@@ -29,7 +29,7 @@ export default function Profile() {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
-              <img src={user.coverPicture ? PUBLIC_FOLDER + user.coverPicture : PUBLIC_FOLDER + "post/3.jpeg"} alt="" className="profileCoverImg" />
+              <img src={user.coverPicture ? PUBLIC_FOLDER + user.coverPicture : PUBLIC_FOLDER + "post/4.jpeg"} alt="" className="profileCoverImg" />
               <img src={user.profilePicture ? PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "person/noAvatar.png"}   alt="" className="profileUserImg" />
             </div>
             <div className="profileInfo">

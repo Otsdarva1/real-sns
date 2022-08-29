@@ -8,6 +8,10 @@ import { AuthContext } from '../../state/AuthContext'
 
 export default function Sidebar() {
   const { user } = useContext(AuthContext)
+  const logout = (e) => {
+    localStorage.removeItem("user")
+    window.location.reload()
+  }
 
   return (
     <div className="sidebar">
@@ -45,7 +49,7 @@ export default function Sidebar() {
             <Settings className="sidebarIcon" />
             <span className="sidebarListItemText">設定</span>
           </li>
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={(e) => logout()}>
             <Logout className="sidebarIcon" />
             <Link to={"/login"} style={{ textDecoration: "none", color: "black"}}>
               <span className="sidebarListItemText">ログアウト</span>

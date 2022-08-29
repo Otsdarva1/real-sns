@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "./Register.css"
 
 export default function Register() {
@@ -74,7 +74,9 @@ export default function Register() {
               ref={passwordConfirmation}
             />
             <button className="loginButton" type="submit">サインアップ</button>
-            <button className="loginRegisterButton">ログイン</button>
+            <Link to="/login" className="loginRegisterButton">
+              <div>ログインはこちら</div>
+            </Link>
           </form>
         </div>
       </div>
