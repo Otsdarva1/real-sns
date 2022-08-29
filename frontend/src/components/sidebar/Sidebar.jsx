@@ -1,11 +1,14 @@
-import { Bookmark, Home, MessageRounded, Notifications, Person, Search, Settings } from '@mui/icons-material'
-import React from 'react'
+import { Bookmark, Home, Logout, MessageRounded, Notifications, Person, Search, Settings } from '@mui/icons-material'
+import React, { useContext } from 'react'
 import RecommendUser from '../recommendUser/RecommendUser'
 import "./Sidebar.css"
 import { Users } from "../../dummyData"
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../state/AuthContext'
 
 export default function Sidebar() {
+  const { user } = useContext(AuthContext)
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -34,14 +37,19 @@ export default function Sidebar() {
           </li>
           <li className="sidebarListItem">
             <Person className="sidebarIcon" />
-            <Link to="/profile/shincode" style={{ textDecoration: "none", color: "black"}}>
+            <Link to={`/profile/${user.username}`} style={{ textDecoration: "none", color: "black"}}>
               <span className="sidebarListItemText">プロフィール</span>
-
             </Link>
           </li>
           <li className="sidebarListItem">
             <Settings className="sidebarIcon" />
             <span className="sidebarListItemText">設定</span>
+          </li>
+          <li className="sidebarListItem">
+            <Logout className="sidebarIcon" />
+            <Link to={"/login"} style={{ textDecoration: "none", color: "black"}}>
+              <span className="sidebarListItemText">ログアウト</span>
+            </Link>
           </li>
         </ul>
         <hr className='sidebarHr'/>

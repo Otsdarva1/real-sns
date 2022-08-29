@@ -1,5 +1,5 @@
 .topbarContainer {
-  background-color: #2c517c;
+  background-color: #385999;
   height: 50px;
   width: 100%;
   display: flex;
@@ -28,6 +28,7 @@
   border-radius: 25px;
   display: flex;
   align-items: center;
+  background-color: #f7f7f7;
 }
 
 .searchIcon {

@@ -22,6 +22,7 @@
   box-shadow: 3px 7px 13px -10px #777777;
   border-radius: 10px;
   transition: all 0.3s;
+  background-color: #edece8;
 }
 
 .sidebarListItem:hover {

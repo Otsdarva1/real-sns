@@ -1,9 +1,10 @@
 import { MoreVert } from '@mui/icons-material'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./Post.css"
 import { format } from 'timeago.js'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../state/AuthContext'
 // import { Users } from "../../dummyData"
 
 
@@ -22,8 +23,14 @@ export default function Post({ post }) {
 
   const [like, setLike] = useState(post.likes.length)
   const [isLiked, setIsLiked] = useState(false)
+  const {user: currentUser} = useContext(AuthContext)
 
-  const handleLike = () => {
+  const handleLike = async () => {
+    try {
+      const response = await axios.put(`/posts/${post._id}/like`, {userId: currentUser._id})
+    } catch (err) {
+
+    }
     setLike(isLiked ? like - 1 : like + 1)
     setIsLiked(!isLiked)
   }
@@ -35,7 +42,7 @@ export default function Post({ post }) {
         <div className="postTop">
           <div className="postTopLeft">
             <Link to={`/profile/${user.username}`} >
-              <img src={user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="postProfileImg" />
+              <img src={user.profilePicture ? PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="postProfileImg" />
             </Link>
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{format(post.createdAt)}</span>
