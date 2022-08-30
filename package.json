@@ -2,10 +2,10 @@
   "name": "real-sns",
   "version": "1.0.0",
   "description": "real-sns",
-  "main": "server.js",
+  "main": "backend/server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "heroku-postbuild": "npm install && cd ../frontend && npm install && npm run build"
+    "start": "nodemon backend/server.js",
+    "heroku-postbuild": "npm install && cd frontend && npm install && npm run build"
   },
   "author": "Otsdarva",
   "license": "ISC",

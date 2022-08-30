@@ -4,7 +4,7 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const mongoose = require("mongoose")
 const path = require("path")
 require("dotenv").config();
@@ -20,10 +20,15 @@ mongoose.connect(process.env.MONGOURL
 //ミドルウェア 第一引数にリクエストされたときに第二引数にルーティングする
 app.use("/images", express.static(path.join(__dirname, "public/images")))
 app.use(express.json())
-app.use("/api/users", userRoute)
-app.use("/api/auth", authRoute)
-app.use("/api/posts", postRoute)
-app.use("/api/upload", uploadRoute)
+app.use("/users", userRoute)
+app.use("/auth", authRoute)
+app.use("/posts", postRoute)
+app.use("/upload", uploadRoute)
+
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname,'../frontend/build/index.html'));
+});
 
 
 app.listen(PORT, () => console.log("サーバーが起動しました"))
