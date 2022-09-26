@@ -1,17 +1,26 @@
-import { Bookmark, Home, Logout, MessageRounded, Notifications, Person, Search, Settings } from '@mui/icons-material'
-import React, { useContext } from 'react'
-import RecommendUser from '../recommendUser/RecommendUser'
-import "./Sidebar.css"
-import { Users } from "../../dummyData"
-import { Link } from 'react-router-dom'
-import { AuthContext } from '../../state/AuthContext'
+import {
+  Bookmark,
+  Home,
+  Logout,
+  MessageRounded,
+  Notifications,
+  Person,
+  Search,
+  Settings,
+} from "@mui/icons-material";
+import React, { useContext } from "react";
+import RecommendUser from "../recommendUser/RecommendUser";
+import "./Sidebar.css";
+import { Users } from "../../dummyData";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../state/AuthContext";
 
 export default function Sidebar() {
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const logout = (e) => {
-    localStorage.removeItem("user")
-    window.location.reload()
-  }
+    localStorage.removeItem("user");
+    window.location.reload();
+  };
 
   return (
     <div className="sidebar">
@@ -19,11 +28,11 @@ export default function Sidebar() {
         <ul className="sidebarList">
           <li className="sidebarListItem">
             <Home className="sidebarIcon" />
-            <Link to="/" style={{ textDecoration: "none", color: "black"}}>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
               <span className="sidebarListItemText">ホーム</span>
             </Link>
           </li>
-          <li className="sidebarListItem">
+          {/* <li className="sidebarListItem">
             <Search className="sidebarIcon" />
             <span className="sidebarListItemText">検索</span>
           </li>
@@ -38,25 +47,31 @@ export default function Sidebar() {
           <li className="sidebarListItem">
             <Bookmark className="sidebarIcon" />
             <span className="sidebarListItemText">ブックマーク</span>
-          </li>
+          </li> */}
           <li className="sidebarListItem">
             <Person className="sidebarIcon" />
-            <Link to={`/profile/${user.username}`} style={{ textDecoration: "none", color: "black"}}>
+            <Link
+              to={`/profile/${user.username}`}
+              style={{ textDecoration: "none", color: "black" }}
+            >
               <span className="sidebarListItemText">プロフィール</span>
             </Link>
           </li>
-          <li className="sidebarListItem">
+          {/* <li className="sidebarListItem">
             <Settings className="sidebarIcon" />
             <span className="sidebarListItemText">設定</span>
-          </li>
+          </li> */}
           <li className="sidebarListItem" onClick={(e) => logout()}>
             <Logout className="sidebarIcon" />
-            <Link to={"/login"} style={{ textDecoration: "none", color: "black"}}>
+            <Link
+              to={"/login"}
+              style={{ textDecoration: "none", color: "black" }}
+            >
               <span className="sidebarListItemText">ログアウト</span>
             </Link>
           </li>
         </ul>
-        <hr className='sidebarHr'/>
+        <hr className="sidebarHr" />
         <ul className="sidebarFriendList">
           {Users.map((user) => (
             <RecommendUser user={user} key={user.id} />
@@ -64,5 +79,5 @@ export default function Sidebar() {
         </ul>
       </div>
     </div>
-  )
+  );
 }
